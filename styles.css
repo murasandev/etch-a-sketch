@@ -1,0 +1,17 @@
+.etch-container {
+    background-color: red;
+    height: 1000px;
+    width: 1000px;
+}
+
+.square {
+    background-color: black;
+    height: 100px;
+    width: 100px;
+}
+
+.square:hover{
+    background-color: white;
+    height: 100px;
+    width: 100px;
+}
