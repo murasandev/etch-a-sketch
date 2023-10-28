@@ -63,14 +63,16 @@ function setRandomColor() {
 // Clone Square ---------------------------------------------------
 
 const clonedSquare = [];
-let numberOfSquares = 100;
-let squareHeight;
+let numberOfSquares = 20;
+let squareSize;
 
 squareDimensions();
 
 function duplicateSquare() {
-    for(i = 0; i < numberOfSquares; i++) {
+    for(i = 0; i < numberOfSquares * numberOfSquares; i++) {
         clonedSquare[i] = squareColor.cloneNode(true);
+        clonedSquare[i].style.height = `${squareSize}px`;
+        clonedSquare[i].style.width = `${squareSize}px`;
 // set dimensions of square based on number of squares
         etchContainer.appendChild(clonedSquare[i]);
         clonedSquare[i].style.backgroundColor = "black";
@@ -80,5 +82,6 @@ function duplicateSquare() {
 duplicateSquare();
 
 function squareDimensions() {
-    squareHeight = 1000 / numberOfSquares;
+    squareSize = 1000 / numberOfSquares;
+    alert(squareSize);
 }
