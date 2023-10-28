@@ -44,11 +44,13 @@ function setSecondColor() {
 let randColorR;
 let randColorG;
 let randColorB;
+let randColorA = 10;
 
 function setRandomColor() {
     randColorR = Math.floor(Math.random() * 256);
     randColorG = Math.floor(Math.random() * 256);
     randColorB = Math.floor(Math.random() * 256);
 
-    squareColor.style.backgroundColor = `rgb(${randColorR}, ${randColorG}, ${randColorB})`;
+    squareColor.style.backgroundColor = `rgb(${randColorR}, ${randColorG}, ${randColorB}, ${randColorA}%)`;
+    randColorA += 10;
 }

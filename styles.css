@@ -1,11 +1,11 @@
 .etch-container {
-    background-color: red;
+    background-color: white;
     height: 1000px;
     width: 1000px;
 }
 
 .square {
-    background-color: black;
+    background-color: rgb(255, 255, 255);
     height: 100px;
     width: 100px;
 }
