@@ -53,7 +53,7 @@ function duplicateSquare() {
 
         clonedSquare[i].style.height = `${squareSize}px`;
         clonedSquare[i].style.width = `${squareSize}px`;
-        clonedSquare[i].style.backgroundColor = "black";
+        clonedSquare[i].style.backgroundColor = "rgb(255, 255, 255, 0.1)";
 
         clonedSquare.push(clonedSquare[i]);
         etchContainer.appendChild(clonedSquare[i]);
