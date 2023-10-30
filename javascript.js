@@ -35,15 +35,16 @@ function setColor() {
 // Clone Square ---------------------------------------------------
 
 const clonedSquare = [];
-let numberOfSquares = 20;
+let numberOfSquares = 50;
 let squareSize;
+let containerHeight = 750;
 
 squareDimensions();
 duplicateSquare();
 
 // set dimensions of square based on number of squares
 function squareDimensions() {
-    squareSize = 1000 / numberOfSquares;
+    squareSize = containerHeight / numberOfSquares;
 }
 
 function duplicateSquare() {

@@ -1,20 +1,13 @@
 .etch-container {
     background-color: white;
-    height: 1000px;
-    width: 1000px;
+    height: 750px;
+    width: 750px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin: auto;
 }
 
 .square {
     background-color: rgb(255, 255, 255);
-    /* height: 240px;
-    width: 240px; */
 }
-
-/* .square:hover{
-    background-color: white;
-    height: 100px;
-    width: 100px; 
-} */
