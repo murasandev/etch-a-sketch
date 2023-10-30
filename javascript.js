@@ -1,11 +1,12 @@
 const etchContainer = document.querySelector(".etch-container");
-let squareColor = document.querySelector(".square");
+let square = document.querySelector(".square");
+
 let isInitialColor = true;
 
 let useColorSet = "randColor";
 let randColorSet = "randColor";
 
-squareColor.addEventListener("mouseover", () => {
+square.addEventListener("mouseover", () => {
     // change color on hover
     console.log("hover");
     if (isInitialColor) {
@@ -21,7 +22,7 @@ squareColor.addEventListener("mouseover", () => {
 function setFirstColor() {
     switch(useColorSet) {
         case "blackWhite":
-            squareColor.style.backgroundColor = "rgb(255, 255, 255)";
+            square.style.backgroundColor = "rgb(255, 255, 255)";
             break;
 
         case "randColor":
@@ -33,7 +34,7 @@ function setFirstColor() {
 function setSecondColor() {
     switch(useColorSet) {
         case "blackWhite":
-            squareColor.style.backgroundColor = "green";
+            square.style.backgroundColor = "green";
             break;
         
         case "randColor":
@@ -52,12 +53,10 @@ function setRandomColor() {
     randColorG = Math.floor(Math.random() * 256);
     randColorB = Math.floor(Math.random() * 256);
 
-    squareColor.style.backgroundColor = `rgb(${randColorR}, ${randColorG}, ${randColorB}, ${randColorA}%)`;
-    
+    // note:reset alpha to 0 when mouseup
     if(randColorA < 100) {
-        randColorA += 10;
+        randColorA += 1;
     }
-    
 }
 
 // Clone Square ---------------------------------------------------
@@ -67,21 +66,91 @@ let numberOfSquares = 20;
 let squareSize;
 
 squareDimensions();
+duplicateSquare();
+
+// set dimensions of square based on number of squares
+function squareDimensions() {
+    squareSize = 1000 / numberOfSquares;
+}
 
 function duplicateSquare() {
     for(i = 0; i < numberOfSquares * numberOfSquares; i++) {
-        clonedSquare[i] = squareColor.cloneNode(true);
+        clonedSquare[i] = square.cloneNode(true);
+
         clonedSquare[i].style.height = `${squareSize}px`;
         clonedSquare[i].style.width = `${squareSize}px`;
-// set dimensions of square based on number of squares
-        etchContainer.appendChild(clonedSquare[i]);
         clonedSquare[i].style.backgroundColor = "black";
+
+        clonedSquare.push(clonedSquare[i]);
+        etchContainer.appendChild(clonedSquare[i]);
     }
 }
 
-duplicateSquare();
+// change color of square
+// for(i = 0; i < numberOfSquares * numberOfSquares; i++) {
+//     clonedSquare[i].addEventListener("mouseover", () => {
+//         // change color on hover
+//         if (isInitialColor) {
+//             // setFirstColor();
+//             clonedSquare[i].style.backgroundColor = "black";
+//             isInitialColor = false;
+//         }
+//         else {
+//             // setSecondColor();
+//             clonedSquare[i].style.backgroundColor = "white";
+//             isInitialColor = true;
+//         }
+//     });
+// }
+// function setFirstColor() {
+//     switch(useColorSet) {
+//         case "blackWhite":
+//             square.style.backgroundColor = "rgb(255, 255, 255)";
+//             break;
 
-function squareDimensions() {
-    squareSize = 1000 / numberOfSquares;
-    alert(squareSize);
+//         case "randColor":
+//             setRandomColor();
+//             break;
+//     }
+// }
+
+// function setSecondColor() {
+//     switch(useColorSet) {
+//         case "blackWhite":
+//             square.style.backgroundColor = "green";
+//             break;
+        
+//         case "randColor":
+//             setRandomColor();
+//             break;
+//     }
+// }
+
+// function setRandomColor() {
+//     randColorR = Math.floor(Math.random() * 256);
+//     randColorG = Math.floor(Math.random() * 256);
+//     randColorB = Math.floor(Math.random() * 256);
+
+//     square.style.backgroundColor = `rgb(${randColorR}, ${randColorG}, ${randColorB}, ${randColorA}%)`;
+    
+//     if(randColorA < 100) {
+//         randColorA += 10;
+//     }
+// }
+const allSquares = document.querySelectorAll(".square");
+
+function hoverSquare() {
+    if(useColorSet === "blackWhite") {
+        this.style.backgroundColor = "white";
+    }
+    else {
+        setRandomColor();
+        this.style.backgroundColor = `rgb(${randColorR}, ${randColorG}, ${randColorB}, ${randColorA}%)`;
+    }
 }
+
+// to add mousedown feature, set a bool to trigger when mouse is down and 
+// reset bool when mouse is up
+allSquares.forEach(function(node) {
+    node.addEventListener("mouseover", hoverSquare);
+})
