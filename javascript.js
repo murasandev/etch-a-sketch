@@ -1,61 +1,34 @@
 const etchContainer = document.querySelector(".etch-container");
 let square = document.querySelector(".square");
 
-let isInitialColor = true;
+// controls color set in setColor Function
+let useColorSet = "blackWhite";
 
-let useColorSet = "randColor";
-let randColorSet = "randColor";
+let colorR;
+let colorG;
+let colorB;
+let colorA = 1;
 
-square.addEventListener("mouseover", () => {
-    // change color on hover
-    console.log("hover");
-    if (isInitialColor) {
-        setFirstColor();
-        isInitialColor = false;
-    }
-    else {
-        setSecondColor();
-        isInitialColor = true;
-    }
-});
-
-function setFirstColor() {
-    switch(useColorSet) {
-        case "blackWhite":
-            square.style.backgroundColor = "rgb(255, 255, 255)";
-            break;
-
+// change this to use above variables for any color and random color
+function setColor() {
+    switch(useColorSet){ 
         case "randColor":
-            setRandomColor();
+            colorR = Math.floor(Math.random() * 256);
+            colorG = Math.floor(Math.random() * 256);
+            colorB = Math.floor(Math.random() * 256);
             break;
-    }
-}
 
-function setSecondColor() {
-    switch(useColorSet) {
         case "blackWhite":
-            square.style.backgroundColor = "green";
+            colorR = 255;
+            colorG = 255;
+            colorB = 255;
             break;
-        
-        case "randColor":
-            setRandomColor();
-            break;
+
     }
-}
-
-let randColorR;
-let randColorG;
-let randColorB;
-let randColorA = 10;
-
-function setRandomColor() {
-    randColorR = Math.floor(Math.random() * 256);
-    randColorG = Math.floor(Math.random() * 256);
-    randColorB = Math.floor(Math.random() * 256);
-
+    
     // note:reset alpha to 0 when mouseup
-    if(randColorA < 100) {
-        randColorA += 1;
+    if(colorA < 100) {
+        colorA += 1;
     }
 }
 
@@ -86,67 +59,11 @@ function duplicateSquare() {
     }
 }
 
-// change color of square
-// for(i = 0; i < numberOfSquares * numberOfSquares; i++) {
-//     clonedSquare[i].addEventListener("mouseover", () => {
-//         // change color on hover
-//         if (isInitialColor) {
-//             // setFirstColor();
-//             clonedSquare[i].style.backgroundColor = "black";
-//             isInitialColor = false;
-//         }
-//         else {
-//             // setSecondColor();
-//             clonedSquare[i].style.backgroundColor = "white";
-//             isInitialColor = true;
-//         }
-//     });
-// }
-// function setFirstColor() {
-//     switch(useColorSet) {
-//         case "blackWhite":
-//             square.style.backgroundColor = "rgb(255, 255, 255)";
-//             break;
-
-//         case "randColor":
-//             setRandomColor();
-//             break;
-//     }
-// }
-
-// function setSecondColor() {
-//     switch(useColorSet) {
-//         case "blackWhite":
-//             square.style.backgroundColor = "green";
-//             break;
-        
-//         case "randColor":
-//             setRandomColor();
-//             break;
-//     }
-// }
-
-// function setRandomColor() {
-//     randColorR = Math.floor(Math.random() * 256);
-//     randColorG = Math.floor(Math.random() * 256);
-//     randColorB = Math.floor(Math.random() * 256);
-
-//     square.style.backgroundColor = `rgb(${randColorR}, ${randColorG}, ${randColorB}, ${randColorA}%)`;
-    
-//     if(randColorA < 100) {
-//         randColorA += 10;
-//     }
-// }
 const allSquares = document.querySelectorAll(".square");
 
 function hoverSquare() {
-    if(useColorSet === "blackWhite") {
-        this.style.backgroundColor = "white";
-    }
-    else {
-        setRandomColor();
-        this.style.backgroundColor = `rgb(${randColorR}, ${randColorG}, ${randColorB}, ${randColorA}%)`;
-    }
+    setColor();
+    this.style.backgroundColor = `rgb(${colorR}, ${colorG}, ${colorB}, ${colorA}%)`;
 }
 
 // to add mousedown feature, set a bool to trigger when mouse is down and 
