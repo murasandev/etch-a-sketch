@@ -2,7 +2,20 @@ const etchContainer = document.querySelector(".etch-container");
 let square = document.querySelector(".square");
 
 // controls color set in setColor Function
-let useColorSet = "blackWhite";
+let useColorSet;
+
+// buttons
+const bwBtn = document.querySelector(".colorOptionBW");
+const randClrBtn = document.querySelector(".colorOptionRand");
+const eraseBtn = document.querySelector(".colorOptionErase");
+
+bwBtn.addEventListener("click", () => {
+    setColor("blackWhite");
+})
+
+randClrBtn.addEventListener("click", () => {
+    setColor("randColor");
+})
 
 let isMouseDown;
 
@@ -12,7 +25,7 @@ let colorB;
 let colorA = 1;
 
 // change this to use above variables for any color and random color
-function setColor() {
+function setColor(useColorSet) {
     switch(useColorSet){ 
         case "randColor":
             colorR = Math.floor(Math.random() * 256);
@@ -66,13 +79,11 @@ const allSquares = document.querySelectorAll(".square");
 
 function hoverSquare() {
     if(isMouseDown) {
-        setColor();
+        setColor("randColor");
         this.style.backgroundColor = `rgb(${colorR}, ${colorG}, ${colorB}, ${colorA}%)`;
     }
 }
 
-// to add mousedown feature, set a bool to trigger when mouse is down and 
-// reset bool when mouse is up
 allSquares.forEach(function(node) {
     node.addEventListener("mouseover", hoverSquare);
 })

@@ -1,3 +1,16 @@
+@font-face {
+    font-family: alba;
+    src: url(fonts/alba/ALBA____.TTF);
+}
+
+@font-face {
+    font-family: neon;
+    src: url(fonts/neon/NEON____.TTF);
+}
+
+* {
+    font-family: alba;
+}
 body {
     margin: 0;
     background-image: url("./images/pxfuel.jpg");
