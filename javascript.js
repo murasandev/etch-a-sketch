@@ -80,6 +80,7 @@ allSquares.forEach(function(node) {
 window.addEventListener("mousedown", function(event){
   isMouseDown = true;  
   console.log(isMouseDown);
+  colorA = 0;
 })
 
 window.addEventListener("mouseup", function(event){
