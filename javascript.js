@@ -108,3 +108,8 @@ window.addEventListener("mouseup", function(event){
     isMouseDown = false;
     console.log(isMouseDown);
 })
+
+// reset etch a sketch
+// loop through all squares and set color to initial color
+
+// set custom size of etch container
