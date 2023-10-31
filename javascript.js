@@ -3,18 +3,23 @@ let square = document.querySelector(".square");
 
 // controls color set in setColor Function
 let useColorSet;
+let isErasing;
 
 // buttons
-const bwBtn = document.querySelector(".colorOptionBW");
+const whiteBtn = document.querySelector(".colorOptionBW");
 const randClrBtn = document.querySelector(".colorOptionRand");
 const eraseBtn = document.querySelector(".colorOptionErase");
 
-bwBtn.addEventListener("click", () => {
-    setColor("blackWhite");
+whiteBtn.addEventListener("click", () => {
+    useColorSet = "white";
 })
 
 randClrBtn.addEventListener("click", () => {
-    setColor("randColor");
+    useColorSet = "randColor";
+})
+
+eraseBtn.addEventListener("click", () => {
+    useColorSet = "erase";
 })
 
 let isMouseDown;
@@ -22,7 +27,7 @@ let isMouseDown;
 let colorR;
 let colorG;
 let colorB;
-let colorA = 1;
+let colorA;
 
 // change this to use above variables for any color and random color
 function setColor(useColorSet) {
@@ -33,16 +38,21 @@ function setColor(useColorSet) {
             colorB = Math.floor(Math.random() * 256);
             break;
 
-        case "blackWhite":
+        case "white":
             colorR = 255;
             colorG = 255;
             colorB = 255;
             break;
-
+        
+        case "erase":
+            colorR = 255;
+            colorG = 255;
+            colorB = 255;
+            colorA = 10;
     }
     
     // note:reset alpha to 0 when mouseup
-    if(colorA < 100) {
+    if(colorA < 100 && !isErasing) {
         colorA += 1;
     }
 }
@@ -79,7 +89,7 @@ const allSquares = document.querySelectorAll(".square");
 
 function hoverSquare() {
     if(isMouseDown) {
-        setColor("randColor");
+        setColor(useColorSet);
         this.style.backgroundColor = `rgb(${colorR}, ${colorG}, ${colorB}, ${colorA}%)`;
     }
 }
