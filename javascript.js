@@ -4,6 +4,8 @@ let square = document.querySelector(".square");
 // controls color set in setColor Function
 let useColorSet = "blackWhite";
 
+let isMouseDown;
+
 let colorR;
 let colorG;
 let colorB;
@@ -63,12 +65,24 @@ function duplicateSquare() {
 const allSquares = document.querySelectorAll(".square");
 
 function hoverSquare() {
-    setColor();
-    this.style.backgroundColor = `rgb(${colorR}, ${colorG}, ${colorB}, ${colorA}%)`;
+    if(isMouseDown) {
+        setColor();
+        this.style.backgroundColor = `rgb(${colorR}, ${colorG}, ${colorB}, ${colorA}%)`;
+    }
 }
 
 // to add mousedown feature, set a bool to trigger when mouse is down and 
 // reset bool when mouse is up
 allSquares.forEach(function(node) {
     node.addEventListener("mouseover", hoverSquare);
+})
+
+window.addEventListener("mousedown", function(event){
+  isMouseDown = true;  
+  console.log(isMouseDown);
+})
+
+window.addEventListener("mouseup", function(event){
+    isMouseDown = false;
+    console.log(isMouseDown);
 })
