@@ -9,6 +9,7 @@ let isErasing;
 const whiteBtn = document.querySelector(".colorOptionBW");
 const randClrBtn = document.querySelector(".colorOptionRand");
 const eraseBtn = document.querySelector(".colorOptionErase");
+const clearBtn = document.querySelector(".colorClear");
 
 whiteBtn.addEventListener("click", () => {
     useColorSet = "white";
@@ -20,6 +21,10 @@ randClrBtn.addEventListener("click", () => {
 
 eraseBtn.addEventListener("click", () => {
     useColorSet = "erase";
+})
+
+clearBtn.addEventListener("click", () => {
+    clearScreen();
 })
 
 let isMouseDown;
@@ -111,5 +116,10 @@ window.addEventListener("mouseup", function(event){
 
 // reset etch a sketch
 // loop through all squares and set color to initial color
+function clearScreen() {
+    allSquares.forEach(function(node) {
+        node.style.backgroundColor = "rgb(255, 255, 255, 0.1)";
+    })
+}
 
 // set custom size of etch container
