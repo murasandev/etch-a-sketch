@@ -65,7 +65,7 @@ function setColor(useColorSet) {
 // Clone Square ---------------------------------------------------
 
 const clonedSquare = [];
-let numberOfSquares = 50;
+let numberOfSquares = 20;
 let squareSize;
 let containerHeight = 750;
 
@@ -114,12 +114,18 @@ window.addEventListener("mouseup", function(event){
     console.log(isMouseDown);
 })
 
-// reset etch a sketch
-// loop through all squares and set color to initial color
 function clearScreen() {
     allSquares.forEach(function(node) {
         node.style.backgroundColor = "rgb(255, 255, 255, 0.1)";
     })
 }
 
+let boxDimensions;
+setDimension();
 // set custom size of etch container
+function setDimension() {   
+    do {
+        boxDimensions = prompt("Enter a number: ");
+    }
+    while (boxDimensions <= 1 || boxDimensions >= 101 || isNaN(boxDimensions));
+}
