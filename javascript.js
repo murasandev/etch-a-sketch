@@ -62,10 +62,39 @@ function setColor(useColorSet) {
     }
 }
 
+// Set Custom Dimensions
+let boxDimensions;
+let numberOfSquares = 20;
+
+// set custom size of etch container
+function setDimension() {   
+    do {
+        boxDimensions = prompt("Enter a number: ");
+        if (boxDimensions < 2 || boxDimensions > 100) {
+            alert("Type number between 2 and 100");
+        }
+    }
+    while (boxDimensions <= 1 || boxDimensions >= 101 || isNaN(boxDimensions));
+}
+
+// set selector for input then add event listener to catch when enter is pressed
+// set input to boxdimensions
+const dimensionInput = document.querySelector("#dimensionID");
+
+dimensionInput.addEventListener("keypress", function(e) {
+    if (e.key === "Enter"){
+        boxDimensions = dimensionInput.value;
+
+        numberOfSquares = parseInt(boxDimensions);
+        
+        // delete old etch a sketch and re run function to create grid
+    }
+})
+
 // Clone Square ---------------------------------------------------
 
 const clonedSquare = [];
-let numberOfSquares = 20;
+
 let squareSize;
 let containerHeight = 750;
 
@@ -118,14 +147,4 @@ function clearScreen() {
     allSquares.forEach(function(node) {
         node.style.backgroundColor = "rgb(255, 255, 255, 0.1)";
     })
-}
-
-let boxDimensions;
-setDimension();
-// set custom size of etch container
-function setDimension() {   
-    do {
-        boxDimensions = prompt("Enter a number: ");
-    }
-    while (boxDimensions <= 1 || boxDimensions >= 101 || isNaN(boxDimensions));
 }
