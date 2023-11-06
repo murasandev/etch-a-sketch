@@ -66,17 +66,6 @@ function setColor(useColorSet) {
 let boxDimensions;
 let numberOfSquares = 20;
 
-// set custom size of etch container
-function setDimension() {   
-    do {
-        boxDimensions = prompt("Enter a number: ");
-        if (boxDimensions < 2 || boxDimensions > 100) {
-            alert("Type number between 2 and 100");
-        }
-    }
-    while (boxDimensions <= 1 || boxDimensions >= 101 || isNaN(boxDimensions));
-}
-
 // set selector for input then add event listener to catch when enter is pressed
 // set input to boxdimensions
 const dimensionInput = document.querySelector("#dimensionID");
@@ -84,11 +73,16 @@ const dimensionInput = document.querySelector("#dimensionID");
 dimensionInput.addEventListener("keypress", function(e) {
     if (e.key === "Enter"){
         boxDimensions = dimensionInput.value;
-
         numberOfSquares = parseInt(boxDimensions);
-        
+        squareDimensions();
+
         // delete old etch a sketch and re run function to create grid
+        clearScreen();
+        deleteSquares();
+
+        duplicateSquare();
     }
+    setHoverEffect();
 })
 
 // Clone Square ---------------------------------------------------
@@ -128,25 +122,33 @@ function hoverSquare() {
     }
 }
 
-allSquares.forEach(function(node) {
-    node.addEventListener("mouseover", hoverSquare);
-})
+function setHoverEffect() {
+    allSquares.forEach(function(node) {
+        node.addEventListener("mouseover", hoverSquare);
+    })
+}
+
+setHoverEffect();
 
 window.addEventListener("mousedown", function(event){
   isMouseDown = true;  
-  console.log(isMouseDown);
   colorA = 0;
 })
 
 window.addEventListener("mouseup", function(event){
     isMouseDown = false;
-    console.log(isMouseDown);
 })
 
 function clearScreen() {
     allSquares.forEach(function(node) {
         node.style.backgroundColor = "rgb(255, 255, 255, 0.1)";
     })
+}
+
+function deleteSquares() {
+    while (etchContainer.firstChild) {
+        etchContainer.removeChild(etchContainer.firstChild);
+    }
 }
 
 function setVolume() {
