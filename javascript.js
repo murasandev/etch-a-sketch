@@ -148,3 +148,10 @@ function clearScreen() {
         node.style.backgroundColor = "rgb(255, 255, 255, 0.1)";
     })
 }
+
+function setVolume() {
+    const bgMusic = document.querySelector("#bg-music");
+    bgMusic.volume = .5;
+}
+
+setVolume();
