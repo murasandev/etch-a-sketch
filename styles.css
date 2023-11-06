@@ -16,6 +16,7 @@ body {
     background-image: url("./images/pxfuel.jpg");
     background-size: cover;
     background-attachment: fixed;
+    background-position: center;
 
     display: flex;
     flex-direction: column;
