@@ -64,21 +64,17 @@ function setColor(useColorSet) {
         colorA += 1;
     }
 }
+
 // color pallette ocean
-// blue 53 80 112
-// chinese violet 109 89 122
-// china rose 181 101 118
-// Buff 234 172 139
 const btnOceanTheme = document.querySelector(".colorOceanTheme");
 let activeOceanTheme;
 
 function enableOceanTheme() {
+    disableAllColorOptions();
     activeOceanTheme = true;
 }
 
-function disableAllColorOptions() {
-    activeOceanTheme = false;
-}
+
 
 btnOceanTheme.addEventListener("click", enableOceanTheme);
 function oceanTheme() {
@@ -86,29 +82,25 @@ function oceanTheme() {
     let colorChoice = Math.floor(Math.random() * numberOfColors);
     switch(colorChoice){
     
-        case 0:
-            console.log("color 1 ocean");
+        case 0: //blue
             colorR = 53;
             colorG = 80;
             colorB = 112;
             break;
         
-        case 1:
-            console.log("color 2 ocean");
+        case 1: //chinese violet
             colorR = 109;
             colorG = 89;
             colorB = 122;
             break;
 
-        case 2:
-            console.log("color 3 ocean");
+        case 2: //china rose
             colorR = 181;
             colorG = 101;
             colorB = 118;
             break;
 
-        case 3:
-            console.log("color 4 ocean");
+        case 3: //buff
             colorR = 234;
             colorG = 172;
             colorB = 139;
@@ -120,6 +112,60 @@ function oceanTheme() {
     }
 }
 
+const btnSunsetTheme = document.querySelector(".colorSunsetTheme");
+let activeSunsetTheme;
+
+function enableSunsetTheme() {
+    disableAllColorOptions();
+    activeSunsetTheme = true;
+}
+
+function disableAllColorOptions() {
+    activeOceanTheme = false;
+    activeSunsetTheme = false;
+}
+
+btnSunsetTheme.addEventListener("click", enableSunsetTheme);
+function sunsetTheme() {
+    let numberOfColors = 5;
+    let colorChoice = Math.floor(Math.random() * numberOfColors);
+    switch(colorChoice){
+    
+        case 0: //puce
+            colorR = 179;
+            colorG = 136;
+            colorB = 154;
+            break;
+        
+        case 1: //salmon pink
+            colorR = 242;
+            colorG = 143;
+            colorB = 164;
+            break;
+
+        case 2: //salmon pink 2
+            colorR = 255;
+            colorG = 158;
+            colorB = 173;
+            break;
+
+        case 3: //melon
+            colorR = 255;
+            colorG = 176;
+            colorB = 173;
+            break;
+
+        case 4: //apricot
+            colorR = 252;
+            colorG = 209;
+            colorB = 182;
+            break;
+    }
+
+    if(colorA < 100 && !isErasing) {
+        colorA += 1;
+    }
+}
 // color pallette sunset
 // puce 179 136 154
 // salmon pink 242 143 163
@@ -188,6 +234,9 @@ function hoverSquare() {
     if(isMouseDown) {
         if(activeOceanTheme) {
             oceanTheme();
+        }
+        else if(activeSunsetTheme) {
+            sunsetTheme();
         }
         else {
             setColor(useColorSet);
