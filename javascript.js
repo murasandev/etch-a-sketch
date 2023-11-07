@@ -12,14 +12,17 @@ const eraseBtn = document.querySelector(".colorOptionErase");
 const clearBtn = document.querySelector(".colorClear");
 
 whiteBtn.addEventListener("click", () => {
+    disableAllColorOptions();
     useColorSet = "white";
 })
 
 randClrBtn.addEventListener("click", () => {
+    disableAllColorOptions();
     useColorSet = "randColor";
 })
 
 eraseBtn.addEventListener("click", () => {
+    disableAllColorOptions();
     useColorSet = "erase";
 })
 
@@ -66,6 +69,56 @@ function setColor(useColorSet) {
 // chinese violet 109 89 122
 // china rose 181 101 118
 // Buff 234 172 139
+const btnOceanTheme = document.querySelector(".colorOceanTheme");
+let activeOceanTheme;
+
+function enableOceanTheme() {
+    activeOceanTheme = true;
+}
+
+function disableAllColorOptions() {
+    activeOceanTheme = false;
+}
+
+btnOceanTheme.addEventListener("click", enableOceanTheme);
+function oceanTheme() {
+    let numberOfColors = 4;
+    let colorChoice = Math.floor(Math.random() * numberOfColors);
+    switch(colorChoice){
+    
+        case 0:
+            console.log("color 1 ocean");
+            colorR = 53;
+            colorG = 80;
+            colorB = 112;
+            break;
+        
+        case 1:
+            console.log("color 2 ocean");
+            colorR = 109;
+            colorG = 89;
+            colorB = 122;
+            break;
+
+        case 2:
+            console.log("color 3 ocean");
+            colorR = 181;
+            colorG = 101;
+            colorB = 118;
+            break;
+
+        case 3:
+            console.log("color 4 ocean");
+            colorR = 234;
+            colorG = 172;
+            colorB = 139;
+            break;
+    }
+
+    if(colorA < 100 && !isErasing) {
+        colorA += 1;
+    }
+}
 
 // color pallette sunset
 // puce 179 136 154
@@ -133,7 +186,13 @@ const allSquares = document.querySelectorAll(".square");
 // colors square on mouseover
 function hoverSquare() {
     if(isMouseDown) {
-        setColor(useColorSet);
+        if(activeOceanTheme) {
+            oceanTheme();
+        }
+        else {
+            setColor(useColorSet);
+        }
+        
         this.style.backgroundColor = `rgb(${colorR}, ${colorG}, ${colorB}, ${colorA}%)`;
     }
 }
