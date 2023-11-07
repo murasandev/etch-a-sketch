@@ -10,25 +10,53 @@ const whiteBtn = document.querySelector(".colorOptionBW");
 const randClrBtn = document.querySelector(".colorOptionRand");
 const eraseBtn = document.querySelector(".colorOptionErase");
 const clearBtn = document.querySelector(".colorClear");
+const btnOceanTheme = document.querySelector(".colorOceanTheme");
+const btnSunsetTheme = document.querySelector(".colorSunsetTheme");
 
+// onclick events
 whiteBtn.addEventListener("click", () => {
     disableAllColorOptions();
     useColorSet = "white";
+    whiteBtn.style.color = "lightsalmon";
 })
 
 randClrBtn.addEventListener("click", () => {
     disableAllColorOptions();
     useColorSet = "randColor";
+    randClrBtn.style.color = "lightsalmon";
 })
 
 eraseBtn.addEventListener("click", () => {
     disableAllColorOptions();
     useColorSet = "erase";
+    eraseBtn.style.color = "lightsalmon";
 })
 
 clearBtn.addEventListener("click", () => {
     clearScreen();
 })
+
+// onhover events
+whiteBtn.addEventListener("mouseover", () => {
+    whiteBtn.style.color = "black";
+})
+
+whiteBtn.addEventListener("mouseout", () => {
+    whiteBtn.style.color = "silver";
+})
+
+btnOceanTheme.addEventListener("click", enableOceanTheme);
+btnSunsetTheme.addEventListener("click", enableSunsetTheme);
+
+// after btn click change color 
+// reset color when other button is clicked
+function defaultButtonColor() {
+ whiteBtn.style.color = "silver";
+ randClrBtn.style.color = "silver";
+ eraseBtn.style.color = "silver";
+ btnSunsetTheme.style.color = "silver";
+ btnOceanTheme.style.color = "silver";
+}
 
 let isMouseDown;
 
@@ -66,17 +94,14 @@ function setColor(useColorSet) {
 }
 
 // color pallette ocean
-const btnOceanTheme = document.querySelector(".colorOceanTheme");
 let activeOceanTheme;
 
 function enableOceanTheme() {
     disableAllColorOptions();
     activeOceanTheme = true;
+    btnOceanTheme.style.color = "lightsalmon";
 }
 
-
-
-btnOceanTheme.addEventListener("click", enableOceanTheme);
 function oceanTheme() {
     let numberOfColors = 4;
     let colorChoice = Math.floor(Math.random() * numberOfColors);
@@ -112,20 +137,21 @@ function oceanTheme() {
     }
 }
 
-const btnSunsetTheme = document.querySelector(".colorSunsetTheme");
+// sunset Theme
 let activeSunsetTheme;
 
 function enableSunsetTheme() {
     disableAllColorOptions();
     activeSunsetTheme = true;
+    btnSunsetTheme.style.color = "lightsalmon";
 }
 
 function disableAllColorOptions() {
     activeOceanTheme = false;
     activeSunsetTheme = false;
+    defaultButtonColor();
 }
 
-btnSunsetTheme.addEventListener("click", enableSunsetTheme);
 function sunsetTheme() {
     let numberOfColors = 5;
     let colorChoice = Math.floor(Math.random() * numberOfColors);
@@ -166,12 +192,6 @@ function sunsetTheme() {
         colorA += 1;
     }
 }
-// color pallette sunset
-// puce 179 136 154
-// salmon pink 242 143 163
-// salmon pink 255 158 173
-// melon 255 176 173
-// apricot 252 209 182
 
 // Set Custom Dimensions
 let boxDimensions;
