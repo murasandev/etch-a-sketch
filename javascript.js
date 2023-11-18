@@ -36,14 +36,14 @@ clearBtn.addEventListener("click", () => {
     clearScreen();
 })
 
-// onhover events
-whiteBtn.addEventListener("mouseover", () => {
-    whiteBtn.style.color = "black";
-})
+// // onhover events
+// whiteBtn.addEventListener("mouseover", () => {
+//     whiteBtn.style.color = "black";
+// })
 
-whiteBtn.addEventListener("mouseout", () => {
-    whiteBtn.style.color = "silver";
-})
+// whiteBtn.addEventListener("mouseout", () => {
+//     whiteBtn.style.color = "silver";
+// })
 
 btnOceanTheme.addEventListener("click", enableOceanTheme);
 btnSunsetTheme.addEventListener("click", enableSunsetTheme);

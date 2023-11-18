@@ -62,7 +62,7 @@ h1 {
 }
 
 .options-bar button:hover {
-    color: rgba(192, 192, 192, 0.35);
+    color: rgba(192, 192, 192, 0.35)!important;
 }
 
 .options-bar button:active {
